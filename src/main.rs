@@ -7,7 +7,7 @@ mod config;
 fn main() {
     let matches = App::new(config::NAME)
         .version(config::VER)
-        .author(config::AUHOR)
+        .author(config::AUTHOR)
         .about(config::DESCRIPTION)
         .subcommand(commands::list::create_command())
         .get_matches();
