@@ -4,7 +4,7 @@ use std::fs;
 pub const COMMAND: &str = "list";
 
 pub fn create_command() -> App<'static> {
-    let app = App::new(COMMAND);
+    let app = App::new(COMMAND).about("Lists repository that was added to track with repman.");
     app
 }
 
