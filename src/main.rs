@@ -1,5 +1,4 @@
 use clap::App;
-use std::path::Path;
 
 mod commands;
 mod config;
@@ -10,17 +9,13 @@ fn main() {
         .author(config::AUTHOR)
         .about(config::DESCRIPTION)
         .subcommand(commands::list::create_command())
+        .subcommand(commands::add::create_command())
         .get_matches();
 
     match matches.subcommand() {
-        Some((commands::list::COMMAND, clone_matches)) => {
-            // Now we have a reference to clone's matches
-            let path = Path::new(clone_matches.value_of("path").unwrap());
-            println!("Cloning {}", path.canonicalize().unwrap().display());
-        }
+        Some((commands::list::COMMAND, _)) => commands::list::command_handler(),
+        Some((commands::add::COMMAND, matches)) => commands::add::command_handler(matches),
         None => println!("No subcommand was used"),
         _ => unreachable!(),
     }
-
-    // Same as previous example...
 }
