@@ -5,7 +5,8 @@ In some cases it's better for me to used binary compiled on my own from source c
 # Compile
 
 ```
-cargo run [options to pass]
+cargo run [options to pass] # for test
+cargo build --release # for release build
 ```
 
 # Usage
