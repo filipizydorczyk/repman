@@ -9,7 +9,11 @@ pub fn create_command() -> App<'static> {
 }
 
 pub fn command_handler() {
+    #[cfg(debug_assertions)]
     let paths = fs::read_dir(".").unwrap();
+
+    #[cfg(not(debug_assertions))]
+    let paths = fs::read_dir("..").unwrap();
 
     for path in paths {
         println!("{}", path.unwrap().path().display())
