@@ -1,5 +1,6 @@
 extern crate dirs;
 
+use std::fs::ReadDir;
 use std::path::PathBuf;
 
 pub const STORAGE_DIR: &str = ".repman";
@@ -24,4 +25,10 @@ pub fn get_storage_path() -> PathBuf {
     let result = dirs::home_dir().unwrap().join(STORAGE_DIR);
 
     return result;
+}
+
+pub fn get_stored_repositories() -> std::io::Result<ReadDir> {
+    let paths = std::fs::read_dir(get_storage_path());
+
+    return paths;
 }

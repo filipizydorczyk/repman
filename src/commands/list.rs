@@ -1,7 +1,6 @@
 extern crate dirs;
 
 use clap::App;
-use std::fs;
 
 pub const COMMAND: &str = "list";
 
@@ -13,7 +12,7 @@ pub fn create_command() -> App<'static> {
 }
 
 pub fn command_handler() {
-    let paths = fs::read_dir(directorystorage::get_storage_path()).unwrap();
+    let paths = directorystorage::get_stored_repositories().unwrap();
 
     for path in paths {
         println!("{}", path.unwrap().path().display())
