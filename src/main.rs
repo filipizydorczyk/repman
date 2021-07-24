@@ -2,8 +2,11 @@ use clap::App;
 
 mod commands;
 mod config;
+mod directorystorage;
 
 fn main() {
+    directorystorage::init_storage();
+
     let matches = App::new(config::NAME)
         .version(config::VER)
         .author(config::AUTHOR)

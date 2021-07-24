@@ -5,8 +5,7 @@ use std::fs;
 
 pub const COMMAND: &str = "list";
 
-#[cfg(not(debug_assertions))]
-use crate::config::STORAGE_DIR;
+use crate::directorystorage;
 
 pub fn create_command() -> App<'static> {
     let app = App::new(COMMAND).about("Lists repository that was added to track with repman.");
@@ -14,11 +13,7 @@ pub fn create_command() -> App<'static> {
 }
 
 pub fn command_handler() {
-    #[cfg(debug_assertions)]
-    let paths = fs::read_dir(".").unwrap();
-
-    #[cfg(not(debug_assertions))]
-    let paths = fs::read_dir(dirs::home_dir().unwrap().join(STORAGE_DIR)).unwrap();
+    let paths = fs::read_dir(directorystorage::get_storage_path()).unwrap();
 
     for path in paths {
         println!("{}", path.unwrap().path().display())
