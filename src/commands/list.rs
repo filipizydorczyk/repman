@@ -1,3 +1,5 @@
+extern crate dirs;
+
 use clap::App;
 use std::fs;
 
@@ -13,7 +15,7 @@ pub fn command_handler() {
     let paths = fs::read_dir(".").unwrap();
 
     #[cfg(not(debug_assertions))]
-    let paths = fs::read_dir("..").unwrap();
+    let paths = fs::read_dir(dirs::home_dir().unwrap()).unwrap();
 
     for path in paths {
         println!("{}", path.unwrap().path().display())
