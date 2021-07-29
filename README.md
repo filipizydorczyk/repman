@@ -11,4 +11,6 @@ cargo build --release # for release build
 
 # Usage
 
-To see commands use `repman help`
+To see commands use `repman help`.
+
+Compiled version will store config files for repository in `~/.repman` but if u debug with `cargo run` all actions will take place in `${PROJECT_DIRECTORY}/target/.repman`.
