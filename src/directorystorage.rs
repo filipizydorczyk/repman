@@ -1,6 +1,8 @@
 extern crate dirs;
 
+use std::fs::File;
 use std::fs::ReadDir;
+use std::io::Write;
 use std::path::PathBuf;
 
 pub const STORAGE_DIR: &str = ".repman";
@@ -31,4 +33,13 @@ pub fn get_stored_repositories() -> std::io::Result<ReadDir> {
     let paths = std::fs::read_dir(get_storage_path());
 
     return paths;
+}
+
+pub fn save_to_file(content: String) -> std::io::Result<()> {
+    let path = format!("{}/rep.sh", get_storage_path().to_str().unwrap());
+
+    let mut output = File::create(path)?;
+    write!(output, "{}", content)?;
+
+    Ok(())
 }

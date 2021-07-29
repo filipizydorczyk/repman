@@ -1,13 +1,14 @@
 extern crate dirs;
-
 use clap::App;
+
+const COMMAND_DESCRIPTION: &str = "Lists repository that was added to track with repman.";
 
 pub const COMMAND: &str = "list";
 
 use crate::directorystorage;
 
 pub fn create_command() -> App<'static> {
-    let app = App::new(COMMAND).about("Lists repository that was added to track with repman.");
+    let app = App::new(COMMAND).about(COMMAND_DESCRIPTION);
     app
 }
 

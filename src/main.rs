@@ -3,6 +3,7 @@ use clap::App;
 mod commands;
 mod config;
 mod directorystorage;
+mod utilities;
 
 fn main() {
     directorystorage::init_storage();
