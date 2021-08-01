@@ -44,3 +44,11 @@ pub fn save_to_file(content: String, name: String) -> std::io::Result<()> {
 
     Ok(())
 }
+
+pub fn remove_file(name: String) -> std::io::Result<()> {
+    let dir = get_storage_path();
+    let path = format!("{}/{}.sh", dir.to_str().unwrap(), name);
+
+    std::fs::remove_file(path)?;
+    Ok(())
+}
