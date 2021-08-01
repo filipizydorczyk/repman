@@ -35,8 +35,9 @@ pub fn get_stored_repositories() -> std::io::Result<ReadDir> {
     return paths;
 }
 
-pub fn save_to_file(content: String) -> std::io::Result<()> {
-    let path = format!("{}/rep.sh", get_storage_path().to_str().unwrap());
+pub fn save_to_file(content: String, name: String) -> std::io::Result<()> {
+    let dir = get_storage_path();
+    let path = format!("{}/{}.sh", dir.to_str().unwrap(), name);
 
     let mut output = File::create(path)?;
     write!(output, "{}", content)?;

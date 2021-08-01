@@ -16,6 +16,7 @@ pub fn command_handler() {
     let paths = directorystorage::get_stored_repositories().unwrap();
 
     for path in paths {
-        println!("{}", path.unwrap().path().display())
+        let name = path.unwrap().path();
+        println!("{}", name.file_name().unwrap().to_str().unwrap())
     }
 }

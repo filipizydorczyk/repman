@@ -24,9 +24,10 @@ pub fn command_handler(matches: &ArgMatches) {
 
     println!("Adding {}", path.canonicalize().unwrap().display());
 
-    match directorystorage::save_to_file(utilities::create_repository_file(
-        path.canonicalize().unwrap().to_str().unwrap(),
-    )) {
+    match directorystorage::save_to_file(
+        utilities::create_repository_file(path.canonicalize().unwrap().to_str().unwrap()),
+        String::from(path.file_name().unwrap().to_str().unwrap()),
+    ) {
         _ => (),
     }
 }
