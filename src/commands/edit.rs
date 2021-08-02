@@ -18,7 +18,9 @@ pub fn create_command() -> App<'static> {
 }
 
 pub fn command_handler(matches: &ArgMatches) {
-    let process = std::process::Command::new("nano")
+    let editor = std::env::var("EDITOR").unwrap_or(String::from("nano"));
+
+    let process = std::process::Command::new(editor)
         .arg(format!(
             "{}/{}.sh",
             directorystorage::get_storage_path().to_str().unwrap(),

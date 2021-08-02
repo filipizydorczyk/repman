@@ -16,6 +16,7 @@ fn main() {
         .subcommand(commands::add::create_command())
         .subcommand(commands::remove::create_command())
         .subcommand(commands::edit::create_command())
+        .subcommand(commands::check::create_command())
         .get_matches();
 
     match matches.subcommand() {
@@ -23,6 +24,7 @@ fn main() {
         Some((commands::add::COMMAND, matches)) => commands::add::command_handler(matches),
         Some((commands::remove::COMMAND, matches)) => commands::remove::command_handler(matches),
         Some((commands::edit::COMMAND, matches)) => commands::edit::command_handler(matches),
+        Some((commands::check::COMMAND, matches)) => commands::check::command_handler(matches),
         None => println!("No subcommand was used"),
         _ => unreachable!(),
     }

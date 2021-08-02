@@ -21,7 +21,9 @@ pub fn init_storage() {
 
 pub fn get_storage_path() -> PathBuf {
     #[cfg(debug_assertions)]
-    let result = PathBuf::from(format!("./target/{}", STORAGE_DIR));
+    let result = PathBuf::from(format!("./target/{}", STORAGE_DIR))
+        .canonicalize()
+        .unwrap();
 
     #[cfg(not(debug_assertions))]
     let result = dirs::home_dir().unwrap().join(STORAGE_DIR);

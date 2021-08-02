@@ -6,7 +6,7 @@ REPOSITORY_PATH="{}"
             
 updateCheck() {{
     cd $REPOSITORY_PATH
-    git fetch && git log ..origin/master
+    git fetch && git --no-pager log ..origin/master
 }}
             
 updatePull() {{
