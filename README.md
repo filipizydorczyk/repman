@@ -1,8 +1,8 @@
-# Repository manager
+# 🔧 Repository manager
 
 In some cases it's better for me to used binary compiled on my own from source code. Problem with this approach is that I can't easly track if there are any udpates, and I need to use sets of difrrent commands based on repository. Goal of this project is to provide such a tool that I could track selected repositories stored on my local machine with and massivle update and install selected ones.
 
-# Stage of project
+# ⌛️ Stage of project
 
 Project has already implemented core functionality but there is stuff to do to make it usable.
 
@@ -22,14 +22,14 @@ Project has already implemented core functionality but there is stuff to do to m
 
 This project is my first one in rust so if anyone will ever boder to look at code and see something awful I would be gratefull for letting me know how things should be.
 
-# Compile
+# 📂 Compile
 
 ```
 cargo run [options to pass] # for test
 cargo build --release # for release build
 ```
 
-# Usage
+# 💻 Usage
 
 To see commands use `repman help`.
 
