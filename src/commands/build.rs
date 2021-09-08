@@ -1,4 +1,5 @@
 use clap::{App, Arg, ArgMatches};
+use pbr::ProgressBar;
 use std::process::Stdio;
 
 use crate::directorystorage;
@@ -19,7 +20,9 @@ pub fn create_command() -> App<'static> {
 }
 
 pub fn command_handler(matches: &ArgMatches) {
-    let process = std::process::Command::new("bash")
+    let mut pb = ProgressBar::new(2);
+    pb.inc();
+    std::process::Command::new("bash")
         .arg("-c")
         .arg(format!(
             "source {}/{}.sh && updateBuild",
@@ -27,7 +30,8 @@ pub fn command_handler(matches: &ArgMatches) {
             matches.value_of(SUB_COMMAND_PATH).unwrap()
         ))
         .stdout(Stdio::inherit())
-        .output();
+        .output()
+        .expect("Build failed");
 
-    println!("{}", String::from_utf8_lossy(&process.unwrap().stdout))
+    pb.inc();
 }
