@@ -20,8 +20,8 @@ pub fn create_command() -> App<'static> {
 }
 
 pub fn command_handler(matches: &ArgMatches) {
-    let mut pb = ProgressBar::new(2);
-    pb.inc();
+    let mut pb = ProgressBar::new(1);
+    pb.set(0);
     std::process::Command::new("bash")
         .arg("-c")
         .arg(format!(
