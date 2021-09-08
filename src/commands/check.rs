@@ -1,4 +1,5 @@
 use clap::{App, Arg, ArgMatches};
+use std::process::Stdio;
 
 use crate::directorystorage;
 
@@ -25,6 +26,7 @@ pub fn command_handler(matches: &ArgMatches) {
             directorystorage::get_storage_path().to_str().unwrap(),
             matches.value_of(SUB_COMMAND_PATH).unwrap()
         ))
+        .stdout(Stdio::inherit())
         .output()
         .expect("Failed to execute updateCheck function");
 
