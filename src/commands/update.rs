@@ -1,4 +1,6 @@
 use clap::{App, Arg, ArgMatches};
+use colored::*;
+use std::process::Stdio;
 
 use crate::directorystorage;
 
@@ -18,14 +20,19 @@ pub fn create_command() -> App<'static> {
 }
 
 pub fn command_handler(matches: &ArgMatches) {
-    let process = std::process::Command::new("bash")
+    let repo_name = matches.value_of(SUB_COMMAND_PATH).unwrap();
+    let header = format!("{} {}", "Pulling changes for".bold(), repo_name.yellow());
+
+    println!("\n{}", header);
+    println!("{}", "=".repeat(header.chars().count() - 17));
+    std::process::Command::new("bash")
         .arg("-c")
         .arg(format!(
             "source {}/{}.sh && updatePull",
             directorystorage::get_storage_path().to_str().unwrap(),
-            matches.value_of(SUB_COMMAND_PATH).unwrap()
+            repo_name
         ))
-        .output();
-
-    println!("{}", String::from_utf8_lossy(&process.unwrap().stdout))
+        .stdout(Stdio::inherit())
+        .output()
+        .expect("Build failed");
 }
