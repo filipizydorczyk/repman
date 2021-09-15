@@ -16,9 +16,9 @@ Project has already implemented core functionality but there is stuff to do to m
 -   [ ] allow providing nums or ranges instead of full names in update, install and build function
 -   [ ] find a way to determine which build needs to be installed after update
 -   [ ] update, install and build commands without any arg should perform action for all repos that need it
--   [ ] in real time displaying stdout in install, update and build commands
--   [ ] change way how commits are listing in check command for selected repostiory
--   [ ] add handling errors for commands
+-   [x] in real time displaying stdout in install, update and build commands
+-   [x] change way how commits are listing in check command for selected repostiory
+-   [x] add handling errors for commands
 
 This project is my first one in rust so if anyone will ever boder to look at code and see something awful I would be gratefull for letting me know how things should be.
 

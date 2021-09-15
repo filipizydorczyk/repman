@@ -34,5 +34,5 @@ pub fn command_handler(matches: &ArgMatches) {
         ))
         .stdout(Stdio::inherit())
         .output()
-        .expect("Build failed");
+        .expect("Update failed");
 }
