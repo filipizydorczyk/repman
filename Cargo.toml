@@ -1,12 +1,12 @@
 [package]
-name = "repositories-manager"
+name = "repman"
 version = "0.1.0"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = "3.0.0-beta.2"
-dirs = "3.0"
+clap = "3.0.0-beta.4"
+dirs = "4.0.0"
 pbr = "1.0.4"
 colored = "2"
