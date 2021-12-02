@@ -24,9 +24,12 @@ pub fn create_command() -> App<'static> {
 pub fn command_handler(matches: &ArgMatches) {
     let args = matches.values_of(SUB_COMMAND_PATH);
 
-    let repos: Vec<_> = match args {
-        None => Vec::new(),
-        _ => args.unwrap().collect(),
+    let repos: Vec<String> = match args {
+        None => directorystorage::get_stored_repositories_names(),
+        _ => args
+            .unwrap()
+            .map(|element| -> String { String::from(element) })
+            .collect(),
     };
 
     repos.iter().for_each(|repo| {

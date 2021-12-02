@@ -13,10 +13,9 @@ pub fn create_command() -> App<'static> {
 }
 
 pub fn command_handler() {
-    let paths = directorystorage::get_stored_repositories().unwrap();
+    let names = directorystorage::get_stored_repositories_names();
 
-    for path in paths {
-        let name = path.unwrap().path();
-        println!("{}", name.file_name().unwrap().to_str().unwrap())
+    for name in names {
+        println!("{}", name);
     }
 }

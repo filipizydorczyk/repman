@@ -37,6 +37,18 @@ pub fn get_stored_repositories() -> std::io::Result<ReadDir> {
     return paths;
 }
 
+pub fn get_stored_repositories_names() -> Vec<String> {
+    let mut vec = Vec::new();
+    let paths = get_stored_repositories().unwrap();
+
+    for path in paths {
+        let name = path.unwrap().path();
+        vec.push(String::from(name.file_stem().unwrap().to_str().unwrap()));
+    }
+
+    return vec;
+}
+
 pub fn save_to_file(content: String, name: String) -> std::io::Result<()> {
     let dir = get_storage_path();
     let path = format!("{}/{}.sh", dir.to_str().unwrap(), name);
