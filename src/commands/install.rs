@@ -2,6 +2,7 @@ use clap::{App, Arg, ArgMatches};
 use colored::*;
 use std::process::Stdio;
 
+use crate::commands::INSTALL_COMMAND_NAME;
 use crate::directorystorage;
 
 const COMMAND_DESCRIPTION: &str = "Follow instructions to install previously built binary.";
@@ -28,9 +29,10 @@ pub fn command_handler(matches: &ArgMatches) {
     std::process::Command::new("bash")
         .arg("-c")
         .arg(format!(
-            "source {}/{}.sh && buildInstall",
+            "source {}/{}.sh && {}",
             directorystorage::get_storage_path().to_str().unwrap(),
-            repo_name
+            repo_name,
+            INSTALL_COMMAND_NAME
         ))
         .stdout(Stdio::inherit())
         .output()

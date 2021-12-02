@@ -1,3 +1,8 @@
+pub const CHECK_COMMAND_NAME: &str = "update_check";
+pub const PULL_COMMAND_NAME: &str = "update_pull";
+pub const BUILD_COMMAND_NAME: &str = "update_build";
+pub const INSTALL_COMMAND_NAME: &str = "build_install";
+
 pub mod add;
 pub mod build;
 pub mod check;

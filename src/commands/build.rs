@@ -2,6 +2,7 @@ use clap::{App, Arg, ArgMatches};
 use pbr::ProgressBar;
 use std::process::Stdio;
 
+use crate::commands::BUILD_COMMAND_NAME;
 use crate::directorystorage;
 
 const COMMAND_DESCRIPTION: &str = "Builds project from source files in repository. First u need to provide instructions by using repman edit <repository> command.";
@@ -25,9 +26,10 @@ pub fn command_handler(matches: &ArgMatches) {
     std::process::Command::new("bash")
         .arg("-c")
         .arg(format!(
-            "source {}/{}.sh && updateBuild",
+            "source {}/{}.sh && {}",
             directorystorage::get_storage_path().to_str().unwrap(),
-            matches.value_of(SUB_COMMAND_PATH).unwrap()
+            matches.value_of(SUB_COMMAND_PATH).unwrap(),
+            BUILD_COMMAND_NAME
         ))
         .stdout(Stdio::inherit())
         .output()

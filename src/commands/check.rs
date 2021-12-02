@@ -2,6 +2,7 @@ use clap::{App, Arg, ArgMatches};
 use colored::*;
 use std::process::Stdio;
 
+use crate::commands::CHECK_COMMAND_NAME;
 use crate::directorystorage;
 
 const COMMAND_DESCRIPTION: &str = "Checks if there is any updates to pull.";
@@ -38,9 +39,10 @@ pub fn command_handler(matches: &ArgMatches) {
         std::process::Command::new("bash")
             .arg("-c")
             .arg(format!(
-                "source {}/{}.sh && updateCheck",
+                "source {}/{}.sh && {}",
                 directorystorage::get_storage_path().to_str().unwrap(),
-                repo_name
+                repo_name,
+                CHECK_COMMAND_NAME
             ))
             .stdout(Stdio::inherit())
             .output()

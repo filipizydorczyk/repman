@@ -1,28 +1,32 @@
+use crate::commands::{
+    BUILD_COMMAND_NAME, CHECK_COMMAND_NAME, INSTALL_COMMAND_NAME, PULL_COMMAND_NAME,
+};
+
 pub fn create_repository_file(path: &str) -> String {
     let result = format!(
         r#"#!/bin/bash
 
 REPOSITORY_PATH="{}"
-            
-updateCheck() {{
+
+{}() {{
     cd $REPOSITORY_PATH
     git fetch && git --no-pager log --oneline ..origin/master
 }}
-            
-updatePull() {{
+
+{}() {{
     cd $REPOSITORY_PATH
     git pull origin master
 }}
-            
-updateBuild() {{
+
+{}() {{
     echo "Not implemented"
 }}
-            
-buildInstall() {{
+
+{}() {{
     echo "Not implemented"
 }}
 "#,
-        path
+        path, CHECK_COMMAND_NAME, PULL_COMMAND_NAME, BUILD_COMMAND_NAME, INSTALL_COMMAND_NAME
     );
 
     return result;
