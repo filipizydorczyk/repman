@@ -12,14 +12,27 @@ pub fn create_command() -> App<'static> {
     let app = App::new(COMMAND).about(COMMAND_DESCRIPTION).arg(
         Arg::new(SUB_COMMAND_PATH)
             .about(SUB_COMMAND_DESRIPTION)
-            .required(true),
+            .required(true)
+            .min_values(1),
     );
     app
 }
 
 pub fn command_handler(matches: &ArgMatches) {
-    let name = String::from(matches.value_of(SUB_COMMAND_PATH).unwrap());
-    match directorystorage::remove_file(name) {
-        _ => (),
+    let args = matches.values_of(SUB_COMMAND_PATH);
+
+    let repos: Vec<String> = match args {
+        None => Vec::new(),
+        _ => args
+            .unwrap()
+            .map(|element| -> String { String::from(element) })
+            .collect(),
     };
+
+    repos.iter().for_each(|repo| {
+        match directorystorage::remove_file(repo.to_owned()) {
+            Ok(_) => println!("{} removed", repo),
+            Err(_) => println!("Adding {}", "XD"),
+        };
+    });
 }
