@@ -15,26 +15,37 @@ pub fn create_command() -> App<'static> {
     let app = App::new(COMMAND).about(COMMAND_DESCRIPTION).arg(
         Arg::new(SUB_COMMAND_PATH)
             .about(SUB_COMMAND_DESRIPTION)
-            .required(true),
+            .required(false)
+            .min_values(0),
     );
     app
 }
 
 pub fn command_handler(matches: &ArgMatches) {
-    let repo_name = matches.value_of(SUB_COMMAND_PATH).unwrap();
-    let header = format!("{} {}", "Pulling changes for".bold(), repo_name.yellow());
+    let args = matches.values_of(SUB_COMMAND_PATH);
+    let repos: Vec<String> = match args {
+        None => directorystorage::get_stored_repositories_names(),
+        _ => args
+            .unwrap()
+            .map(|element| -> String { String::from(element) })
+            .collect(),
+    };
 
-    println!("\n{}", header);
-    println!("{}", "=".repeat(header.chars().count() - 17));
-    std::process::Command::new("bash")
-        .arg("-c")
-        .arg(format!(
-            "source {}/{}.sh && {}",
-            directorystorage::get_storage_path().to_str().unwrap(),
-            repo_name,
-            PULL_COMMAND_NAME
-        ))
-        .stdout(Stdio::inherit())
-        .output()
-        .expect("Update failed");
+    repos.iter().for_each(|repo| {
+        let header = format!("{} {}", "Pulling changes for".bold(), repo.yellow());
+
+        println!("\n{}", header);
+        println!("{}", "=".repeat(header.chars().count() - 17));
+        std::process::Command::new("bash")
+            .arg("-c")
+            .arg(format!(
+                "source {}/{}.sh && {}",
+                directorystorage::get_storage_path().to_str().unwrap(),
+                repo,
+                PULL_COMMAND_NAME
+            ))
+            .stdout(Stdio::inherit())
+            .output()
+            .expect("Update failed");
+    });
 }
