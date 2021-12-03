@@ -10,24 +10,46 @@ pub const SUB_COMMAND_PATH: &str = "path";
 use crate::directorystorage;
 use crate::utilities;
 
+struct NewRepoEntry {
+    path: String,
+    name: String,
+}
+
 pub fn create_command() -> App<'static> {
     let app = App::new(COMMAND).about(COMMAND_DESCRIPTION).arg(
         Arg::new(SUB_COMMAND_PATH)
             .about(SUB_COMMAND_DESRIPTION)
-            .required(true),
+            .required(true)
+            .min_values(1),
     );
     app
 }
 
 pub fn command_handler(matches: &ArgMatches) {
-    let path = Path::new(matches.value_of(SUB_COMMAND_PATH).unwrap());
+    let args = matches.values_of(SUB_COMMAND_PATH);
 
-    println!("Adding {}", path.canonicalize().unwrap().display());
+    let repos: Vec<NewRepoEntry> = match args {
+        None => Vec::new(),
+        _ => args
+            .unwrap()
+            .map(|element| -> NewRepoEntry {
+                let path = Path::new(element);
+                return NewRepoEntry {
+                    path: String::from(path.canonicalize().unwrap().to_str().unwrap()),
+                    name: String::from(path.file_name().unwrap().to_str().unwrap()),
+                };
+            })
+            .collect(),
+    };
 
-    match directorystorage::save_to_file(
-        utilities::create_repository_file(path.canonicalize().unwrap().to_str().unwrap()),
-        String::from(path.file_name().unwrap().to_str().unwrap()),
-    ) {
-        _ => (),
-    }
+    repos.iter().for_each(|repo| {
+        println!("Adding {}", repo.name);
+
+        match directorystorage::save_to_file(
+            utilities::create_repository_file(repo.path.clone()),
+            repo.name.clone(),
+        ) {
+            _ => println!("{} added", repo.name),
+        }
+    });
 }

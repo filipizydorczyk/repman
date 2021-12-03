@@ -2,7 +2,7 @@ use crate::commands::{
     BUILD_COMMAND_NAME, CHECK_COMMAND_NAME, INSTALL_COMMAND_NAME, PULL_COMMAND_NAME,
 };
 
-pub fn create_repository_file(path: &str) -> String {
+pub fn create_repository_file(path: String) -> String {
     let result = format!(
         r#"#!/bin/bash
 
