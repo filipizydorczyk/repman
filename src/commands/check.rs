@@ -6,7 +6,7 @@ use crate::commands::CHECK_COMMAND_NAME;
 use crate::directorystorage;
 
 const COMMAND_DESCRIPTION: &str = "Checks if there is any updates to pull.";
-const SUB_COMMAND_DESRIPTION: &str = "Name of repository to check.";
+const SUB_COMMAND_DESRIPTION: &str = "Name of repository to check. You can provide multiple repositories. If no repository is provided all repos will be considered.";
 
 pub const COMMAND: &str = "check";
 pub const SUB_COMMAND_PATH: &str = "name";

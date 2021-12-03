@@ -8,14 +8,14 @@ Project has already implemented core functionality but there is stuff to do to m
 
 -   [x] ~~script for~~ installing build in system
 -   [ ] refactor commands modules (minimize repetitive code)
--   [ ] make possible adding multiple repositories in single command
--   [ ] make possible naming multiple repositories in update, install and build commands
--   [ ] check command without arg should check all repositories and list ready to update ones
+-   [x] make possible adding multiple repositories in single command
+-   [x] make possible naming multiple repositories in update, install and build commands
+-   [x] check command without arg should check all repositories and list ready to update ones
 -   [ ] all listing should sort repositories in alphabetical order
 -   [ ] add numering for repositories listing
 -   [ ] allow providing nums or ranges instead of full names in update, install and build function
 -   [ ] find a way to determine which build needs to be installed after update
--   [ ] update, install and build commands without any arg should perform action for all repos that need it
+-   [x] update, install and build commands without any arg should perform action for all repos that need it
 -   [x] in real time displaying stdout in install, update and build commands
 -   [x] change way how commits are listing in check command for selected repostiory
 -   [x] add handling errors for commands

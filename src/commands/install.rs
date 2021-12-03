@@ -6,7 +6,7 @@ use crate::commands::INSTALL_COMMAND_NAME;
 use crate::directorystorage;
 
 const COMMAND_DESCRIPTION: &str = "Follow instructions to install previously built binary.";
-const SUB_COMMAND_DESRIPTION: &str = "Name of repository to install.";
+const SUB_COMMAND_DESRIPTION: &str = "Name of repository to install. You can provide multiple repositories. If no repository is provided all repos will be considered.";
 
 pub const COMMAND: &str = "install";
 pub const SUB_COMMAND_PATH: &str = "name";

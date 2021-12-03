@@ -2,7 +2,7 @@ use clap::{App, Arg, ArgMatches};
 use std::path::Path;
 
 const COMMAND_DESCRIPTION: &str = "Add repository to track with repman. If repository is already added whole config file will be reset.";
-const SUB_COMMAND_DESRIPTION: &str = "Path to repository.";
+const SUB_COMMAND_DESRIPTION: &str = "Path to repository. You can provide multiple paths at once.";
 
 pub const COMMAND: &str = "add";
 pub const SUB_COMMAND_PATH: &str = "path";

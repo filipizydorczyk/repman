@@ -6,7 +6,7 @@ use crate::commands::BUILD_COMMAND_NAME;
 use crate::directorystorage;
 
 const COMMAND_DESCRIPTION: &str = "Builds project from source files in repository. First u need to provide instructions by using repman edit <repository> command.";
-const SUB_COMMAND_DESRIPTION: &str = "Name of repository to build.";
+const SUB_COMMAND_DESRIPTION: &str = "Name of repository to build. You can provide multiple names. If no name is provided all repos will be considered.";
 
 pub const COMMAND: &str = "build";
 pub const SUB_COMMAND_PATH: &str = "name";

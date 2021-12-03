@@ -1,7 +1,7 @@
 use clap::{App, Arg, ArgMatches};
 
-const COMMAND_DESCRIPTION: &str = "Unregister repository from repman. If there is no provided repository registered, no actions will be executed.";
-const SUB_COMMAND_DESRIPTION: &str = "Name of repository to unregister from repman (same as name of direcotry where repositoryu is being kept in).";
+const COMMAND_DESCRIPTION: &str = "Unregister repository from repman. If there is no provided repository registered, no actions will be executed. This command doesn't delete your repository from disk, just from repman.";
+const SUB_COMMAND_DESRIPTION: &str = "Name of repository to unregister from repman (same as name of direcotry where repository is being kept in). You can provide multiple repositories.";
 
 pub const COMMAND: &str = "remove";
 pub const SUB_COMMAND_PATH: &str = "name";

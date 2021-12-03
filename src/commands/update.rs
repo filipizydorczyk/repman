@@ -6,7 +6,8 @@ use crate::commands::PULL_COMMAND_NAME;
 use crate::directorystorage;
 
 const COMMAND_DESCRIPTION: &str = "Pulls changes from origin repository.";
-const SUB_COMMAND_DESRIPTION: &str = "Name of repository to update.";
+const SUB_COMMAND_DESRIPTION: &str =
+    "Names of repositories to update. All repos will be updated if there is no name provided.";
 
 pub const COMMAND: &str = "update";
 pub const SUB_COMMAND_PATH: &str = "name";
