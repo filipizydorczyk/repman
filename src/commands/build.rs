@@ -15,25 +15,37 @@ pub fn create_command() -> App<'static> {
     let app = App::new(COMMAND).about(COMMAND_DESCRIPTION).arg(
         Arg::new(SUB_COMMAND_PATH)
             .about(SUB_COMMAND_DESRIPTION)
-            .required(true),
+            .required(false)
+            .min_values(0),
     );
     app
 }
 
 pub fn command_handler(matches: &ArgMatches) {
-    let mut pb = ProgressBar::new(1);
-    pb.set(0);
-    std::process::Command::new("bash")
-        .arg("-c")
-        .arg(format!(
-            "source {}/{}.sh && {}",
-            directorystorage::get_storage_path().to_str().unwrap(),
-            matches.value_of(SUB_COMMAND_PATH).unwrap(),
-            BUILD_COMMAND_NAME
-        ))
-        .stdout(Stdio::inherit())
-        .output()
-        .expect("Build failed");
+    let args = matches.values_of(SUB_COMMAND_PATH);
+    let repos: Vec<String> = match args {
+        None => directorystorage::get_stored_repositories_names(),
+        _ => args
+            .unwrap()
+            .map(|element| -> String { String::from(element) })
+            .collect(),
+    };
 
-    pb.inc();
+    let mut pb = ProgressBar::new(repos.len() as u64);
+    repos.iter().for_each(|repo| {
+        pb.set(0);
+        std::process::Command::new("bash")
+            .arg("-c")
+            .arg(format!(
+                "source {}/{}.sh && {}",
+                directorystorage::get_storage_path().to_str().unwrap(),
+                repo,
+                BUILD_COMMAND_NAME
+            ))
+            .stdout(Stdio::inherit())
+            .output()
+            .expect("Build failed");
+
+        pb.inc();
+    });
 }
