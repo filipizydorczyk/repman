@@ -11,7 +11,7 @@ use crate::directorystorage;
 pub fn create_command() -> App<'static> {
     let app = App::new(COMMAND).about(COMMAND_DESCRIPTION).arg(
         Arg::new(SUB_COMMAND_PATH)
-            .about(SUB_COMMAND_DESRIPTION)
+            .help(SUB_COMMAND_DESRIPTION)
             .required(true)
             .min_values(1),
     );

@@ -11,7 +11,7 @@ pub const SUB_COMMAND_PATH: &str = "name";
 pub fn create_command() -> App<'static> {
     let app = App::new(COMMAND).about(COMMAND_DESCRIPTION).arg(
         Arg::new(SUB_COMMAND_PATH)
-            .about(SUB_COMMAND_DESRIPTION)
+            .help(SUB_COMMAND_DESRIPTION)
             .required(true),
     );
     app

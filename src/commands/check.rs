@@ -19,14 +19,15 @@ pub fn create_command() -> App<'static> {
         .about(COMMAND_DESCRIPTION)
         .arg(
             Arg::new(COUNT_FLAG)
-                .about(COUNT_FLAG_DESRIPTION)
+                .help(COUNT_FLAG_DESRIPTION)
                 .long(COUNT_FLAG)
+                .short('c')
                 .required(false)
                 .takes_value(false),
         )
         .arg(
             Arg::new(SUB_COMMAND_PATH)
-                .about(SUB_COMMAND_DESRIPTION)
+                .help(SUB_COMMAND_DESRIPTION)
                 .required(false)
                 .min_values(0),
         );
