@@ -1,6 +1,6 @@
 use crate::commands::{
-    BUILD_COMMAND_NAME, CHECK_COMMAND_NAME, INSTALL_COMMAND_NAME, PULL_COMMAND_NAME,
-    PULL_COUNT_COMMAND_NAME,
+    BUILD_COMMAND_NAME, CHECK_COMMAND_NAME, CHECK_COUNT_COMMAND_NAME, INSTALL_COMMAND_NAME,
+    PULL_COMMAND_NAME,
 };
 
 pub fn create_repository_file(path: String) -> String {
@@ -36,7 +36,7 @@ REPOSITORY_PATH="{path}"
         pull = PULL_COMMAND_NAME,
         build = BUILD_COMMAND_NAME,
         install = INSTALL_COMMAND_NAME,
-        count = PULL_COUNT_COMMAND_NAME
+        count = CHECK_COUNT_COMMAND_NAME
     );
 
     return result;
